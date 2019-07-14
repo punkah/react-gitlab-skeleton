@@ -1,0 +1,50 @@
+image: node:latest
+
+stages:
+  - build
+  - deploy
+
+release:build:
+  stage: build
+  script: yarn build
+  artifacts:
+    name: "project-$CI_COMMIT_REF_NAME"
+    paths:
+      - build/
+
+deploy:dev:
+  stage: deploy
+  environment:
+    name: dev
+    url: https://dev.belasitz.appspot.com
+  before_script:
+    - wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-237.0.0-linux-x86_64.tar.gz
+    - tar -xzf google-cloud-sdk-237.0.0-linux-x86_64.tar.gz
+    - ./google-cloud-sdk/install.sh
+  dependencies:
+    - release:build
+  script:
+    - echo $GAE_KEY_FILE_DEV > gae_auth.json
+    - ./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gae_auth.json
+    - ./google-cloud-sdk/bin/gcloud app deploy --project=$GAE_PROJECT_ID_DEV
+  after_script:
+    - rm gae_auth.json
+
+deploy:production:
+  when: manual
+  stage: deploy
+  environment:
+    name: production
+    url: https://belasitz.appspot.com
+  before_script:
+    - wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-237.0.0-linux-x86_64.tar.gz
+    - tar -xzf google-cloud-sdk-237.0.0-linux-x86_64.tar.gz
+    - ./google-cloud-sdk/install.sh
+  dependencies:
+    - release:build
+  script:
+    - echo $GAE_KEY_FILE_PROD > gae_auth.json
+    - ./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file gae_auth.json
+    - ./google-cloud-sdk/bin/gcloud app deploy --project=$GAE_PROJECT_ID_PROD
+  after_script:
+    - rm gae_auth.json
