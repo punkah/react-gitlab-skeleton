@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Header from './page/Header';
+import { Component } from 'react';
 import './Page.scss';
-import Timeline from './page/Timeline';
 import Footer from './page/Footer';
+import Header from './page/Header';
+import Timeline from './page/Timeline';
 
 class Page extends Component {
   render() {

@@ -1,19 +1,12 @@
 {
-  "extends": [
-    "airbnb"
-  ],
-  "plugins": [
-    "prettier"
-  ],
-  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:react/jsx-runtime"],
+  "plugins": ["prettier"],
+  "parser": "@babel/eslint-parser",
   "rules": {
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "linebreak-style": "off",
@@ -24,10 +17,14 @@
       }
     ],
     "react/jsx-one-expression-per-line": "off",
-    "import/no-named-as-default": "off"
+    "import/no-named-as-default": "off",
+    "react/jsx-uses-react": "off"
   },
   "globals": {
     "document": true,
     "GIT_VERSION": true
+  },
+  "env": {
+    "jest": true
   }
 }

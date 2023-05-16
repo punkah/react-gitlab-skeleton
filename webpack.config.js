@@ -1,7 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 
 module.exports = {
   output: {

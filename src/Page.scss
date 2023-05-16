@@ -7,7 +7,7 @@ $bark: #60412b;
 
 body {
   margin: 0;
-  font-family: "Merriweather", serif;
+  font-family: 'Merriweather', serif;
   background-color: black;
   color: $frost;
   font-size: 10px;
@@ -28,14 +28,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("./img/london.jpg");
+  background-image: url('./img/london.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .header-text {
   flex: 1 0 auto;
-  font-family: "Dancing Script", cursive;
+  font-family: 'Dancing Script', cursive;
   font-size: 7rem;
 }
 
@@ -64,7 +64,7 @@ button {
   background: transparent;
   color: $lead;
   font-size: 2rem;
-  font-family: "Dancing Script", cursive;
+  font-family: 'Dancing Script', cursive;
   font-style: oblique;
   padding: 0 1rem;
 }
