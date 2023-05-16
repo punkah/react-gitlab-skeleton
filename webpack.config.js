@@ -6,16 +6,19 @@ const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: 'index.bundle.js',
   },
+  entry: './src/index.tsx',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+  },
+  mode: process.env.NODE_ENV || 'development',
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(ts|tsx|js|jsx)$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
       },
       {
         test: /\.s?css$/,
@@ -26,9 +29,6 @@ module.exports = {
         use: ['file-loader'],
       },
     ],
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new webpack.DefinePlugin({

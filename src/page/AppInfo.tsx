@@ -5,7 +5,7 @@ export default class AppInfo extends Component {
     return (
       <div>
         <p>Environment: {process.env.NODE_ENV}</p>
-        <p>Git Version: {GIT_VERSION}</p>
+        {/* <p>Git Version: {GIT_VERSION}</p> */}
       </div>
     );
   }

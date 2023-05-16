@@ -25,6 +25,7 @@
     "GIT_VERSION": true
   },
   "env": {
-    "jest": true
+    "jest": true,
+    "jest/globals": true
   }
 }
